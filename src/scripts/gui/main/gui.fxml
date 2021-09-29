@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scripts.gui.main.GUIController">
+   <children>
+      <Text layoutX="292.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SkrrtInteractor">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Text>
+      <ButtonBar layoutX="-9.0" layoutY="462.0" prefHeight="36.0" prefWidth="737.0" style="-fx-background-color: darkgray;">
+        <buttons>
+            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#btnStartPressed" text="Start" />
+        </buttons>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </ButtonBar>
+      <ListView layoutX="523.0" layoutY="80.0" prefHeight="378.0" prefWidth="186.0" />
+      <TabPane layoutX="3.0" layoutY="38.0" prefHeight="378.0" prefWidth="728.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="NPCs">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NPC Name" />
+                        <Text layoutX="16.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dialogue" />
+                        <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tile" />
+                        <ComboBox fx:id="cmbNPCTeleport" layoutX="85.0" layoutY="213.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextArea fx:id="txtDialogue" layoutX="85.0" layoutY="127.0" prefHeight="70.0" prefWidth="396.0" />
+                        <Text layoutX="13.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use teleport" />
+                        <ComboBox fx:id="cmbNPCStamina" layoutX="85.0" layoutY="253.0" prefHeight="25.0" prefWidth="110.0" />
+                        <Text layoutX="13.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use Stamina" />
+                        <TextField fx:id="txtName" layoutX="86.0" layoutY="21.0" />
+                        <TextField fx:id="txtTile" layoutX="86.0" layoutY="56.0" />
+                        <Text layoutX="40.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(x,y,z)">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnGrabNPCTile" layoutX="251.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnGrabNPCTilePressed" text="Grab Ingame Tile" />
+                        <Text layoutX="213.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw a teleport from the bank if it's available, will skip if not" wrappingWidth="290.42626953125">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="213.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw/drink a stamina from the bank if it's available, will skip if not" wrappingWidth="290.42626953125">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnAddNPCTask" layoutX="438.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnAddNPCTaskPressed" text="Add Task" />
+                        <Text layoutX="15.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
+                        <ComboBox fx:id="cmbAction" editable="true" layoutX="86.0" layoutY="91.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Objects">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="715.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object Name" />
+                        <Text layoutX="16.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object Type" />
+                        <Text layoutX="15.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tile" />
+                        <ComboBox fx:id="cmbObjectTeleport" layoutX="97.0" layoutY="167.0" prefHeight="25.0" prefWidth="111.0" />
+                        <Text layoutX="15.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teleport" />
+                        <ComboBox fx:id="cmbObjectStamina" layoutX="97.0" layoutY="207.0" prefHeight="25.0" prefWidth="110.0" />
+                        <Text layoutX="15.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stamina" />
+                        <TextField fx:id="txtObjectName" layoutX="96.0" layoutY="21.0" />
+                        <TextField fx:id="txtObjectTile" layoutX="96.0" layoutY="56.0" />
+                        <Text layoutX="40.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(x,y,z)">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnObjectIngameTile" layoutX="261.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnObjectIngameTilePressed" text="Grab Ingame Tile" />
+                        <Text layoutX="225.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw a teleport from the bank if it's available, will skip if not (and if restocking is disabled)" wrappingWidth="290.42626953125">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="225.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw/drink a stamina from the bank if it's available, will skip if not" wrappingWidth="290.42626953125">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnAddObjectTask" layoutX="438.0" layoutY="259.0" mnemonicParsing="false" onAction="#btnAddObjectTaskPressed" text="Add Task" />
+                        <ComboBox fx:id="cmbObjectType" layoutX="96.0" layoutY="92.0" prefWidth="150.0" />
+                        <Text layoutX="17.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mode" />
+                        <ComboBox fx:id="cmbMode" layoutX="96.0" layoutY="128.0" prefWidth="150.0" />
+                        <CheckBox fx:id="checkAntiPK" layoutX="18.0" layoutY="251.0" mnemonicParsing="false" text="Anti PK" />
+                        <CheckBox fx:id="checkSellLoot" layoutX="18.0" layoutY="318.0" mnemonicParsing="false" text="Sell picked items" />
+                        <CheckBox fx:id="checkRestocking" layoutX="18.0" layoutY="284.0" mnemonicParsing="false" text="Restocking" />
+                        <ComboBox fx:id="cmbSellItems" layoutX="150.0" layoutY="314.0" prefWidth="150.0" />
+                        <ComboBox fx:id="cmbRestocking" layoutX="150.0" layoutY="280.0" prefWidth="150.0" />
+                        <ComboBox fx:id="cmbPK" layoutX="150.0" layoutY="247.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Text layoutX="20.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Name" />
+      <ComboBox fx:id="cmbProfile" editable="true" layoutX="100.0" layoutY="433.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
