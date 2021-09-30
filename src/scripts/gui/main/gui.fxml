@@ -44,7 +44,7 @@
                         <Text layoutX="13.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use teleport" />
                         <ComboBox fx:id="cmbNPCStamina" layoutX="85.0" layoutY="253.0" prefHeight="25.0" prefWidth="110.0" />
                         <Text layoutX="13.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use Stamina" />
-                        <TextField fx:id="txtName" layoutX="86.0" layoutY="21.0" />
+                        <TextField fx:id="txtNPCName" layoutX="86.0" layoutY="21.0" />
                         <TextField fx:id="txtTile" layoutX="86.0" layoutY="56.0" />
                         <Text layoutX="40.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(x,y,z)">
                            <font>
