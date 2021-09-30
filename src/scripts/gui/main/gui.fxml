@@ -29,7 +29,7 @@
             <Insets right="10.0" />
          </padding>
       </ButtonBar>
-      <ListView layoutX="523.0" layoutY="80.0" prefHeight="360.0" prefWidth="186.0" />
+      <ListView fx:id="listTasks" layoutX="523.0" layoutY="80.0" prefHeight="360.0" prefWidth="186.0" />
       <TabPane layoutX="-6.0" layoutY="40.0" prefHeight="378.0" prefWidth="737.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="NPCs">
