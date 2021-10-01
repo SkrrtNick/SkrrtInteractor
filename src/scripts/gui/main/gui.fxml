@@ -109,12 +109,12 @@
                         <ComboBox fx:id="cmbSellItems" layoutX="150.0" layoutY="314.0" prefWidth="150.0" />
                         <ComboBox fx:id="cmbRestocking" layoutX="150.0" layoutY="280.0" prefWidth="150.0" />
                         <ComboBox fx:id="cmbPK" layoutX="150.0" layoutY="247.0" prefWidth="150.0" />
-                        <Text fx:id="titleAction" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action">
+                        <Text fx:id="titleAction" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Override">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtObjectAction" layoutX="315.0" layoutY="128.0" />
+                        <TextField fx:id="txtObjectAction" layoutX="364.0" layoutY="128.0" />
                      </children>
                   </AnchorPane>
                </content>
