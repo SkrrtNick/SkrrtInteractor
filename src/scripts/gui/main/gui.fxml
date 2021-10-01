@@ -5,7 +5,9 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -115,6 +117,14 @@
       </TabPane>
       <Text layoutX="21.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Name" />
       <ComboBox fx:id="cmbProfile" editable="true" layoutX="100.0" layoutY="419.0" prefWidth="150.0" />
-      <ListView fx:id="listTasks" layoutX="523.0" layoutY="80.0" prefHeight="360.0" prefWidth="186.0" />
+      <ListView fx:id="listTasks" layoutX="523.0" layoutY="80.0" prefHeight="360.0" prefWidth="186.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="mnuDuplicate" mnemonicParsing="false" onAction="#mnuDuplicatePressed" text="Duplicate" />
+                  <MenuItem fx:id="mnuDelete" mnemonicParsing="false" onAction="#mnuDeletePressed" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu></ListView>
    </children>
 </AnchorPane>
