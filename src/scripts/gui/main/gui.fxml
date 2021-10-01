@@ -94,7 +94,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="225.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw/drink a stamina from the bank if it's available, will skip if not" wrappingWidth="290.42626953125">
+                        <Text layoutX="225.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw/drink a stamina from the bank if it's available, will skip if not (and if restocking is disabled)" wrappingWidth="290.42626953125">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
@@ -109,12 +109,8 @@
                         <ComboBox fx:id="cmbSellItems" layoutX="150.0" layoutY="314.0" prefWidth="150.0" />
                         <ComboBox fx:id="cmbRestocking" layoutX="150.0" layoutY="280.0" prefWidth="150.0" />
                         <ComboBox fx:id="cmbPK" layoutX="150.0" layoutY="247.0" prefWidth="150.0" />
-                        <Text fx:id="titleAction" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action Override">
-                           <font>
-                              <Font name="System Italic" size="12.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="txtObjectAction" layoutX="364.0" layoutY="128.0" />
+                        <Text fx:id="titleAction" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
+                        <TextField fx:id="txtObjectAction" layoutX="315.0" layoutY="128.0" />
                      </children>
                   </AnchorPane>
                </content>
