@@ -121,7 +121,7 @@
          <contextMenu>
             <ContextMenu>
               <items>
-                <MenuItem fx:id="mnuEdit" mnemonicParsing="false" onAction="#mnuEditPressed" text="Edit" />
+                <MenuItem fx:id="mnuEdit" mnemonicParsing="false" onAction="#mnuEditClicked" text="Edit" />
                   <MenuItem fx:id="mnuDuplicate" mnemonicParsing="false" onAction="#mnuDuplicatePressed" text="Duplicate" />
                      <MenuItem fx:id="mnuDelete" mnemonicParsing="false" onAction="#mnuDeletePressed" text="Delete" />
               </items>
