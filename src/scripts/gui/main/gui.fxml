@@ -119,7 +119,7 @@
       </TabPane>
       <Text layoutX="21.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Name" />
       <ComboBox fx:id="cmbProfile" editable="true" layoutX="100.0" layoutY="419.0" prefWidth="150.0" />
-      <ListView fx:id="listTasks" layoutX="523.0" layoutY="80.0" prefHeight="360.0" prefWidth="186.0">
+      <ListView fx:id="listViewTasks" layoutX="523.0" layoutY="80.0" prefHeight="360.0" prefWidth="186.0">
          <contextMenu>
             <ContextMenu>
               <items>
