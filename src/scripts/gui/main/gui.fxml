@@ -25,6 +25,8 @@
       </Text>
       <ButtonBar layoutX="-9.0" layoutY="452.0" prefHeight="46.0" prefWidth="737.0" style="-fx-background-color: darkgray;">
         <buttons>
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSavePressed" text="Save" />
+            <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#btnLoadPressed" text="Load" />
             <Button fx:id="btnStart" mnemonicParsing="false" onAction="#btnStartPressed" text="Start" />
         </buttons>
          <padding>
@@ -111,6 +113,7 @@
                         <ComboBox fx:id="cmbPK" layoutX="150.0" layoutY="247.0" prefWidth="150.0" />
                         <Text fx:id="titleAction" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
                         <TextField fx:id="txtObjectAction" layoutX="315.0" layoutY="128.0" />
+                        <CheckBox fx:id="checkWorldHop" layoutX="264.0" layoutY="96.0" mnemonicParsing="false" text="Worldhop if object is not found" />
                      </children>
                   </AnchorPane>
                </content>
