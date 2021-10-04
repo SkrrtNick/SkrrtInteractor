@@ -101,7 +101,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btnAddObjectTask" layoutX="438.0" layoutY="259.0" mnemonicParsing="false" onAction="#btnAddObjectTaskPressed" text="Add Task" />
+                        <Button fx:id="btnAddGroundItemTask" layoutX="438.0" layoutY="259.0" mnemonicParsing="false" onAction="#btnAddGroundItemTaskPressed" text="Add Task" />
                         <Text layoutX="17.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mode" />
                         <ComboBox fx:id="cmbGroundItemMode" layoutX="96.0" layoutY="92.0" prefWidth="150.0" />
                         <CheckBox fx:id="checkGroundItemAntiPK" layoutX="18.0" layoutY="251.0" mnemonicParsing="false" text="Anti PK" />
