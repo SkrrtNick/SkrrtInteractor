@@ -134,7 +134,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btnTelegrabtIngameTile" layoutX="261.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnTelegrabtIngameTilePressed" text="Grab Ingame Tile" />
+                        <Button fx:id="btnTelegrabIngameTile" layoutX="261.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnTelegrabIngameTilePressed" text="Grab Ingame Tile" />
                         <Text layoutX="225.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Will withdraw a teleport from the bank if it's available, will skip if not (and if restocking is disabled)" wrappingWidth="290.42626953125">
                            <font>
                               <Font name="System Italic" size="12.0" />
