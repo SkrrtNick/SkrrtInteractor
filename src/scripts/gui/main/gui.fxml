@@ -113,6 +113,8 @@
                         <Text fx:id="titleAction" layoutX="16.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
                         <TextField fx:id="txtGroundItemAction" layoutX="97.0" layoutY="129.0" />
                         <CheckBox fx:id="checkGroundItemWorldHop" layoutX="264.0" layoutY="96.0" mnemonicParsing="false" text="Worldhop if object is not found" />
+                        <TextField fx:id="txtGroundItemID" layoutX="380.0" layoutY="314.0" prefHeight="25.0" prefWidth="75.0" />
+                        <Text layoutX="333.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ItemID" />
                      </children>
                   </AnchorPane>
                </content>
@@ -164,6 +166,8 @@
                            </font>
                         </Text>
                         <Button fx:id="btnSafeTile" layoutX="260.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnSafeTilePressed" text="Grab Ingame Tile" />
+                        <TextField fx:id="txtTelegrabbingID" layoutX="380.0" layoutY="314.0" prefHeight="25.0" prefWidth="75.0" />
+                        <Text layoutX="333.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ItemID" />
                      </children>
                   </AnchorPane>
                </content>
@@ -207,6 +211,8 @@
                         <ComboBox fx:id="cmbObjectPK" layoutX="150.0" layoutY="247.0" prefWidth="150.0" />
                         <Text fx:id="titleAction1" layoutX="16.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Action" />
                         <TextField fx:id="txtGameObjectAction" layoutX="96.0" layoutY="128.0" />
+                        <TextField fx:id="txtGameObjectID" layoutX="380.0" layoutY="314.0" prefHeight="25.0" prefWidth="75.0" />
+                        <Text layoutX="333.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ItemID" />
                      </children>
                   </AnchorPane>
                </content>
