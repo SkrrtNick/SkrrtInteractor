@@ -4,26 +4,37 @@ import lombok.Getter;
 import lombok.Setter;
 import org.tribot.api.General;
 import org.tribot.script.ScriptManifest;
+import org.tribot.script.sdk.Login;
+import org.tribot.script.sdk.Magic;
+import org.tribot.script.sdk.Options;
+import org.tribot.script.sdk.Waiting;
 import org.tribot.script.sdk.painting.Painting;
 import org.tribot.script.sdk.script.ScriptConfig;
 import org.tribot.script.sdk.script.TribotScript;
 import org.tribot.script.sdk.util.ScriptSettings;
+import org.tribot.script.sdk.walking.GlobalWalking;
+import org.tribot.script.sdk.walking.WalkState;
 import org.tribot.script.sdk.walking.adapter.DaxWalkerAdapter;
 import scripts.api.Logger;
-import scripts.api.Timer;
 import scripts.api.fluffee.FluffeesPaint;
 import scripts.api.fluffee.PaintInfo;
+import scripts.api.functions.AntiPK;
+import scripts.data.GUIOptions;
+import scripts.data.InteractionTask;
 import scripts.data.Profile;
 import scripts.gui.GUI;
+import scripts.tasks.BankingTask;
+import scripts.tasks.chatter.ChatterTask;
+import scripts.tasks.chatter.InteractingWithNPC;
+import scripts.tasks.object.ObjectTask;
 
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-@ScriptManifest(name = "SkrrtMonitor", authors = {"SkrrtNick"}, category = "Tools")
+@ScriptManifest(name = "SkrrtInteractor", authors = {"SkrrtNick"}, category = "Tools")
 public class SkrrtInteractor implements TribotScript, PaintInfo {
     Logger logger = new Logger().setHeader("SkrrtScripts");
-    DaxWalkerAdapter daxWalkerAdapter = new DaxWalkerAdapter("sub_JmRkbIB2XRYqmf", "7227dd88-8182-4cd9-a3d9-00b8fa6ff56e");
     @Setter
     @Getter
     private static String status;
@@ -39,19 +50,17 @@ public class SkrrtInteractor implements TribotScript, PaintInfo {
     private GUI gui;
     @Setter
     @Getter
-    private String mostProfitable;
-    @Setter
-    @Getter
     private int mostProfit = 0, combinedProfit = 0;
-    Timer timer = new Timer(0);
-    private double version = 2.01;
+    private double version = 2.08;
+    @Setter @Getter
+    private static AntiPK antiPK = new AntiPK();
 
     @Override
     public String[] getPaintInfo() {
-        if (getRunningProfile().getMethodMonitors() == null) {
-            return new String[]{"SkrrtPicker v" + version, "Time ran: " + SkrrtPaint.getRuntimeString(), "Status: " + getStatus()};
+        if (getRunningProfile().getInteractionTasks() == null) {
+            return new String[]{"SkrrtInteractor v" + version, "Time ran: " + SkrrtPaint.getRuntimeString(), "Status: " + getStatus()};
         }
-        return new String[]{"SkrrtMonitor v" + version, "Time ran: " + SkrrtPaint.getRuntimeString()};
+        return new String[]{"SkrrtInteractor v" + version, "Time ran: " + SkrrtPaint.getRuntimeString(), "Status: " + getStatus()};
     }
 
     private final FluffeesPaint SkrrtPaint = new FluffeesPaint(this, FluffeesPaint.PaintLocations.BOTTOM_LEFT_PLAY_SCREEN, new Color[]{new Color(255, 251, 255)}, "Trebuchet MS", new Color[]{new Color(0, 0, 0, 124)},
@@ -59,7 +68,7 @@ public class SkrrtInteractor implements TribotScript, PaintInfo {
 
     @Override
     public void configure(ScriptConfig config) {
-        config.setRandomsAndLoginHandlerEnabled(false);
+        config.setRandomsAndLoginHandlerEnabled(true);
     }
 
     @Override
@@ -69,22 +78,48 @@ public class SkrrtInteractor implements TribotScript, PaintInfo {
             ScriptSettings settings = ScriptSettings.getDefault();
             settings.load(args, Profile.class).ifPresent(SkrrtInteractor::setRunningProfile);
         }
-//        if (getRunningProfile().getMethodMonitors()==null)
-        try {
-            fxml = new URL("https://raw.githubusercontent.com/SkrrtNick/SkrrtMonitor/master/src/scripts/gui/main/gui.fxml");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        gui = new GUI(fxml);
-        gui.show();
-        while (gui.isOpen()) {
-            setStatus("Waiting on user input...");
-            General.sleep(500);
+        if (getRunningProfile().getInteractionTasks()==null) {
+            try {
+                fxml = new URL("https://raw.githubusercontent.com/SkrrtNick/SkrrtInteractor/master/src/scripts/gui/main/gui.fxml");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            gui = new GUI(fxml);
+            gui.show();
+            while (gui.isOpen()) {
+                setStatus("Waiting on user input...");
+                General.sleep(500);
+            }
         }
         logger.setHeader("Profile").setMessage(getRunningProfile().toString()).print();
-
+        while(!Login.isLoggedIn()){
+            setStatus("Waiting for login");
+            General.sleep(40,60);
+        }
         while (isRunning()) {
-
+            for(InteractionTask i : getRunningProfile().getInteractionTasks()){
+                if(i.isCompleted()){
+                    continue;
+                }
+                if(i.getType().equals(GUIOptions.InteractionType.CHATTER)){
+                    ChatterTask chatterTask = new ChatterTask(i);
+                    if(chatterTask.validate()){
+                        chatterTask.execute();
+                    }
+                } else {
+                    ObjectTask objectTask = new ObjectTask(i);
+                    if(objectTask.validate()){
+                        objectTask.execute();
+                    }
+                }
+                if(!i.isCompleted()){
+                    break;
+                }
+            }
+            if(getRunningProfile().getInteractionTasks().stream().allMatch(InteractionTask::isCompleted)){
+                break;
+            }
+            General.sleep(40,60);
         }
     }
 }
