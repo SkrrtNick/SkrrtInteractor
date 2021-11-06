@@ -5,36 +5,30 @@ import lombok.Setter;
 import org.tribot.api.General;
 import org.tribot.script.ScriptManifest;
 import org.tribot.script.sdk.Login;
-import org.tribot.script.sdk.Magic;
-import org.tribot.script.sdk.Options;
-import org.tribot.script.sdk.Waiting;
 import org.tribot.script.sdk.painting.Painting;
 import org.tribot.script.sdk.script.ScriptConfig;
 import org.tribot.script.sdk.script.TribotScript;
 import org.tribot.script.sdk.util.ScriptSettings;
-import org.tribot.script.sdk.walking.GlobalWalking;
-import org.tribot.script.sdk.walking.WalkState;
-import org.tribot.script.sdk.walking.adapter.DaxWalkerAdapter;
 import scripts.api.Logger;
-import scripts.api.fluffee.FluffeesPaint;
-import scripts.api.fluffee.PaintInfo;
 import scripts.api.functions.AntiPK;
+import scripts.api.functions.Numbers;
 import scripts.data.GUIOptions;
 import scripts.data.InteractionTask;
 import scripts.data.Profile;
 import scripts.gui.GUI;
-import scripts.tasks.BankingTask;
 import scripts.tasks.chatter.ChatterTask;
-import scripts.tasks.chatter.InteractingWithNPC;
 import scripts.tasks.object.ObjectTask;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 @ScriptManifest(name = "SkrrtInteractor", authors = {"SkrrtNick"}, category = "Tools")
-public class SkrrtInteractor implements TribotScript, PaintInfo {
+public class SkrrtInteractor implements TribotScript {
     Logger logger = new Logger().setHeader("SkrrtScripts");
+    private int ellipses = 0;
     @Setter
     @Getter
     private static String status;
@@ -51,29 +45,50 @@ public class SkrrtInteractor implements TribotScript, PaintInfo {
     @Setter
     @Getter
     private int mostProfit = 0, combinedProfit = 0;
-    private double version = 2.08;
+    private double version = 2.09;
     @Setter @Getter
     private static AntiPK antiPK = new AntiPK();
-
-    @Override
-    public String[] getPaintInfo() {
-        if (getRunningProfile().getInteractionTasks() == null) {
-            return new String[]{"SkrrtInteractor v" + version, "Time ran: " + SkrrtPaint.getRuntimeString(), "Status: " + getStatus()};
-        }
-        return new String[]{"SkrrtInteractor v" + version, "Time ran: " + SkrrtPaint.getRuntimeString(), "Status: " + getStatus()};
-    }
-
-    private final FluffeesPaint SkrrtPaint = new FluffeesPaint(this, FluffeesPaint.PaintLocations.BOTTOM_LEFT_PLAY_SCREEN, new Color[]{new Color(255, 251, 255)}, "Trebuchet MS", new Color[]{new Color(0, 0, 0, 124)},
-            new Color[]{new Color(179, 0, 0)}, 1, false, 5, 3, 0);
 
     @Override
     public void configure(ScriptConfig config) {
         config.setRandomsAndLoginHandlerEnabled(true);
     }
 
+    private Image getImage(String url) {
+        try {
+            return ImageIO.read(new URL(url));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    final Image paintBg = getImage("https://imgur.com/vvn4em8.png");
+
+
+    Font myMainFont = new Font("Calibri", 1, 12);
+    Font versionFont = new Font("Calibri", 1, 11);
+
+
+    private String getEllipses() {
+        return ".".repeat(ellipses++);
+    }
+
     @Override
     public void execute(String args) {
-        Painting.setPaint(SkrrtPaint::paint);
+
+        Painting.addPaint(ui -> {
+            ui.setFont(myMainFont);
+            ui.setColor(new Color(1, 1, 1, 0.4f));
+            ui.drawImage(paintBg, 275, 208, 240, 130, null);
+            ui.setColor(Color.DARK_GRAY);
+            ui.drawString(Numbers.getHumanisedRuntime(START_TIME), 334, 264);
+            ui.drawString("Status: " + getStatus(), 334, 298);
+            ui.setColor(Color.red);
+            ui.setFont(versionFont);
+            ui.drawString("V.", 480, 205);
+            ui.setColor(Color.ORANGE);
+            ui.drawString(String.valueOf(version), 490, 205);
+        });
         if (!args.isBlank()) {
             ScriptSettings settings = ScriptSettings.getDefault();
             settings.load(args, Profile.class).ifPresent(SkrrtInteractor::setRunningProfile);
@@ -87,7 +102,8 @@ public class SkrrtInteractor implements TribotScript, PaintInfo {
             gui = new GUI(fxml);
             gui.show();
             while (gui.isOpen()) {
-                setStatus("Waiting on user input...");
+                setStatus("Waiting on user input" + getEllipses());
+                if(ellipses==4) ellipses = 0;
                 General.sleep(500);
             }
         }
