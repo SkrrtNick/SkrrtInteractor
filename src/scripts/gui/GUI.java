@@ -6,6 +6,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -140,6 +141,7 @@ public class GUI extends Application {
 
         stage.setScene(scene);
         stage.setTitle("SkrrtInteractor");
+        stage.getIcons().add(new Image("https://e7.pngegg.com/pngimages/350/590/png-clipart-black-cursor-icon-computer-mouse-pointer-cursor-mouse-cursor-angle-electronics.png"));
     }
 
     public <T extends AbstractGUIController> T getController() {
